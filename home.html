@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 10rem;
+            color: blueviolet;
+            text-shadow: 5px 5px 10px wheat;
+                     /* 5px 5px 10px pink; */
+            background-color: black;
+        }
+        #clock{
+            padding: 20px;
+            /* border: 2px dashed wheat; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="clock"></div>
+    </div>
+    <script>
+        let clock = () => {
+            let date = new Date();
+            let hrs = date.getHours();
+            let min = date.getMinutes();
+            let sec = date.getSeconds();
+            // console.log(time)
+            let period = "AM";
+            if (hrs == 0) { hrs = 12; }
+            else if (hrs >= 12) {
+                hrs = hrs - 12;
+                period = "PM"
+            }
+            hrs = hrs < 10 ? "0" + hrs : hrs;
+            min = min < 10 ? "0" + min : min;
+            sec = sec < 10 ? "0" + sec : sec;
+            let time = `${hrs}:${min}:${sec}:${period}`
+            document.getElementById("clock").innerText = time;
+            setTimeout(clock, 1000)
+        };
+        clock();
+    </script>
+</body>
+
+</html>
